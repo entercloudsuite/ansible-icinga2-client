@@ -1,0 +1,53 @@
+---
+
+- name: Install Icinga2
+  apt:
+    name: icinga2
+    state: present
+    update_cache: yes
+  register: icinga2_bootstrap
+  when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
+
+- name: Install icinga2 utilities
+  apt:
+    name: monitoring-plugins
+    state: present
+    update_cache: yes
+  when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
+
+- name: Install Icinga2
+  yum:
+    name: icinga2
+    state: present
+    update_cache: yes
+  register: icinga2_bootstrap
+  when: ansible_os_family == 'RedHat' and ansible_distribution == 'CentOS'
+
+- name: Install icinga2 utilities
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - nagios-plugins-all
+    - icinga2-selinux
+  when: ansible_os_family == 'RedHat' and ansible_distribution == 'CentOS'
+
+- name: Generating icinga2 pki token for {{ ansible_hostname }}
+  shell: "{{ role_path }}/scripts/icinga2-token-gen.py {{ ansible_hostname }} {{ icinga2_api_ticket_salt }}"
+  register: icinga2_client_token
+  delegate_to: 127.0.0.1
+  when: icinga2_bootstrap.changed
+
+- name: Retrive icinga2 master certificate
+  shell: icinga2 pki save-cert --host {{ icinga2_master_host }} --port 5665 --trustedcert /etc/icinga2/pki/icinga2-master.crt
+  when: icinga2_bootstrap.changed
+
+- name: 
+  shell: icinga2 node setup --zone {{ ansible_hostname }} --master_host {{ icinga2_master_host }} --endpoint monitoring-master,{{ icinga2_master_host }},5665 --ticket {{ icinga2_client_token.stdout }} --accept-commands --trustedcert /etc/icinga2/pki/icinga2-master.crt
+  when: icinga2_bootstrap.changed
+
+- name: Restart icinga2
+  service:
+    name: icinga2
+    state: restarted

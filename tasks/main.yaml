@@ -1,0 +1,4 @@
+---
+
+- include: repo.yaml
+- include: icinga2.yaml
