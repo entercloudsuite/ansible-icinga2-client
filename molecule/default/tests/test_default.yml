@@ -1,6 +1,6 @@
 ---
 package:
-  icinga2-client:
+  icinga2:
     installed: true
 port:
   tcp:5665:
@@ -8,17 +8,6 @@ port:
     ip:
       - 0.0.0.0
 service:
-  icinga2-client:
+  icinga2:
     enabled: true
-    running: true
-user:
-  icinga2-client:
-    exists: true
-    groups:
-      - icinga2-client
-group:
-  icinga2-client:
-    exists: true
-process:
-  icinga2-client:
     running: true
