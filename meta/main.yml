@@ -13,6 +13,8 @@ galaxy_info:
     - name: CentOS
   galaxy_tags:
     - molecule
+    - monitoring
+    - icinga2
 
 dependencies:
   - {role: entercloudsuite.ansible-icinga2-master}
