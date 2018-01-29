@@ -15,4 +15,4 @@ galaxy_info:
     - molecule
 
 dependencies:
-  - {role: galaxy.ansible-icinga2-master}
+  - {role: entercloudsuite/ansible-icinga2-master}
