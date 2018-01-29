@@ -10,7 +10,10 @@ galaxy_info:
       versions:
         - xenial
         - trusty
-    - name: CentOS
+    - name: EL
+      versions:
+        - 6
+        - 7
   galaxy_tags:
     - molecule
     - monitoring
