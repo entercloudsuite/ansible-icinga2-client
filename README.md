@@ -4,7 +4,7 @@ Ansible Role: icinga2-client
 [![Build Status](https://travis-ci.org/entercloudsuite/ansible-icinga2-client .svg?branch=master)](https://travis-ci.org/entercloudsuite/ansible-icinga2-client)
 [![Galaxy](https://img.shields.io/badge/galaxy-entercloudsuite.icinga2-client-blue.svg?style=flat-square)](https://galaxy.ansible.com/entercloudsuite/icinga2-client)  
 
-Installs icinga2-client on Ubuntu 16.04 (Xenial)
+Installs icinga2-client on Ubuntu 14.04 (Trusty), 16.04 (Xenial), CentOS 6 and 7
 
 ## Requirements
 
