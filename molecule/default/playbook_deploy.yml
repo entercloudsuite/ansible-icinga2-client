@@ -6,4 +6,4 @@
   become_user: root
   hosts: all
   roles:
-    - {role: ansible-icinga2-client}
+    - {role: icinga2-client}

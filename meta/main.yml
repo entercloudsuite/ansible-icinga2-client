@@ -20,4 +20,4 @@ galaxy_info:
     - icinga2
 
 dependencies:
-  - {role: entercloudsuite.ansible-icinga2-master}
+  - {role: entercloudsuite.icinga2-master}
