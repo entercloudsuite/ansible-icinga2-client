@@ -18,9 +18,17 @@ The role defines most of its variables in `defaults/main.yml`:
 
 Run with default vars:
 
-    - hosts: all
-      roles:
-        - { role: ansible-icinga2-client }
+    ---
+
+    - name: install icinga2 client
+        hosts: icinga2_client
+        tags: client
+        roles:
+        - role: ansible-icinga2-client
+          tags: client
+        vars:
+            - icinga2_api_ticket_salt: 23930b9fadc9bfddbb4fe5875f5f6f2f
+            - icinga2_master_host: "127.0.0.1"
 
 ## Testing
 
