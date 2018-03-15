@@ -19,8 +19,8 @@
   file:
     path: /etc/icinga2/pki
     state: directory
-    owner: root
-    group: root
+    owner: nagios
+    group: nagios
   when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
 
 - name: Install Icinga2
