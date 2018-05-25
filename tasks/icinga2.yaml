@@ -1,12 +1,9 @@
 ---
 
 - name: Install Icinga2
-  apt:
+  package:
     name: icinga2
-    state: present
-    update_cache: yes
   register: icinga2_bootstrap
-  when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
 
 - name: Install icinga2 utilities
   apt:
@@ -22,14 +19,6 @@
     owner: nagios
     group: nagios
   when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
-
-- name: Install Icinga2
-  yum:
-    name: icinga2
-    state: present
-    update_cache: yes
-  register: icinga2_bootstrap
-  when: ansible_os_family == 'RedHat' and ansible_distribution == 'CentOS'
 
 - name: Install icinga2 utilities
   yum:
