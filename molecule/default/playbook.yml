@@ -2,5 +2,5 @@
 
 - name: run the main role
   hosts: all
-  roles:
-    - {role: ansible-icinga2-client}
+  tasks:
+    - shell: true
