@@ -3,4 +3,4 @@
 - name: run the main role
   hosts: all
   tasks:
-    - shell: true
+    - shell: "true"

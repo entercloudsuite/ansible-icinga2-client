@@ -24,8 +24,6 @@ scenario:
     - syntax
     - create
     - prepare
-    - converge
-    - verify
     - destroy
 verifier:
   name: goss
