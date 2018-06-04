@@ -52,6 +52,20 @@
   shell: icinga2 node setup --zone {{ ansible_hostname }} --master_host {{ icinga2_master_host }} --endpoint monitoring-master,{{ icinga2_master_host }},5665 --ticket {{ icinga2_client_token.stdout }} --accept-commands --trustedcert /etc/icinga2/pki/icinga2-master.crt
   when: icinga2_bootstrap.changed
 
+- name: Setting client default configuration
+  copy:
+    src: "{{ role_path }}/files/conf.d/"
+    dest: /etc/icinga2/conf.d/
+
+- name: Copy additional plugins
+  copy:
+    src: "{{ role_path }}/files/plugins/"
+    dest: /usr/lib/nagios/plugins/
+
+- name: Set executable additional plugins
+  shell: chmod +x /usr/lib/nagios/plugins/*
+
+
 - name: Restart icinga2
   service:
     name: icinga2
